@@ -1,0 +1,64 @@
+@use "/public/scss/abstracts/variables.scss" as vars;
+section {
+  height: 1700px;
+  display: flex;
+  gap: 40px;
+  padding: 0 0 0 50px;
+  .item--selected {
+    margin-top: 10px;
+    position: relative;
+    flex-basis: 420px;
+    flex-shrink: 0;
+    .item {
+      display: none;
+      top: 50px;
+      position: sticky;
+      img {
+        width: 100%;
+        max-height: 400px;
+      }
+      .item__head {
+        margin-top: 15px;
+        display: flex;
+        align-items: end;
+        .item-head__name {
+          font-weight: bold;
+          margin-right: 15px;
+          font-size: 1.3rem;
+        }
+        .item-head__rate {
+          gap: 0;
+          margin-left: auto;
+        }
+      }
+      .item__bottom {
+        margin-top: 10px;
+        line-height: 1.5;
+      }
+    }
+  }
+  .item-list__wrap {
+    flex-basis: calc(100% - 420px);
+    .item__list {
+      > li {
+        font-size: 1.4rem;
+        display: flex;
+        height: 60px;
+        line-height: 60px;
+        border-bottom: 1px solid #000;
+        cursor: pointer;
+        transition: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+        &:hover {
+          background: #000;
+          color: #fff;
+        }
+        > * {
+          flex: 1;
+        }
+        .item-list__name {
+          text-indent: 20px;
+        }
+      }
+    }
+  }
+}

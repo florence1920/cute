@@ -1,0 +1,60 @@
+@use "/public/scss/abstracts/variables.scss" as vars;
+
+body {
+  background: vars.$body-color;
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+
+/* 스크롤바 전체 스타일 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* 스크롤바의 track 스타일 */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* 스크롤바 thumb 스타일 */
+::-webkit-scrollbar-thumb {
+  background: #a7a7a7;
+  border-radius: 10px;
+}
+
+.filebox {
+  display: flex;
+  gap: 10px;
+  .upload {
+    height: 40px;
+    padding: 0 10px;
+    border: none;
+    width: 60%;
+    outline: none;
+    background: none;
+    color: vars.$gray-color;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    padding: 5px 20px;
+    color: vars.$gray-color;
+    background-color: vars.$dark-color;
+    cursor: pointer;
+  }
+  input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+  }
+}
+
+.rate {
+  display: flex;
+  gap: 5px;
+}
