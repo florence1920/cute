@@ -1,11 +1,10 @@
 import { fetchItems } from "./get-item";
-// 모달
+
 const dialog = document.querySelector(".modal--add");
-const addBtn = document.querySelector(".category-list--add");
 const categoryListRightElements = document.querySelectorAll(
   ".category-list__right"
 );
-//동적 처리.... 상위요소를 선택해서
+
 categoryListRightElements.forEach((element) => {
   element.addEventListener("click", function (event) {
     if (event.target.closest(".category-list--add")) {
@@ -14,6 +13,7 @@ categoryListRightElements.forEach((element) => {
     }
   });
 });
+
 dialog.addEventListener("close", () => {
   document.body.classList.remove("modal-open");
 });
@@ -33,7 +33,7 @@ dialog.addEventListener("click", function (event) {
 
 const fileInput = document.getElementById("file-add");
 fileInput.addEventListener("click", function (event) {
-  event.stopPropagation(); // 이벤트 버블링을 중단하여 모달이 닫히는 것을 방지합니다.
+  event.stopPropagation(); // 이벤트 버블링을 중단하여 모달이 닫히는 것을 방지
 });
 
 const uploadNameInput = document.querySelector(".upload");
@@ -42,7 +42,6 @@ const imagePreview = document.querySelector(".preview");
 fileInput.addEventListener("change", function () {
   const fileName = fileInput.value.split("\\").pop(); // 파일 경로에서 파일 이름만 추출
   uploadNameInput.value = fileName;
-  // 미리보기
   const file = this.files[0];
 
   if (file) {
@@ -99,29 +98,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!validateForm(form)) return; // 유효성 검사
     // 폼 데이터 생성
     const formData = new FormData(form);
-    // select 값
+    // select, rate 값 추가
     const category = document
       .querySelector(".select-dropdown__button")
       .getAttribute("data-value");
     formData.append("category", category);
     const rateValue = rate.getAttribute("data-value");
     formData.append("rate", rateValue);
-    // const requestData = Object.fromEntries(formData.entries());
-    // console.log("form" + Object.fromEntries(formData.entries()));
     try {
-      // 서버로 POST 요청 전송
       const response = await fetch("/cute", {
         method: "POST",
         body: formData,
       });
 
       if (response.ok) {
-        // const data = await response.json();
         window.scrollTo(0, scrollPosition);
         dialog.close();
         form.reset();
-        imagePreview.src = "/images/cat.png"; // 미리보기 이미지 초기화
-        resetImage(); // 점수 초기화
+        imagePreview.src = "/images/cat.png";
+        resetImage();
         fetchItems();
       } else {
         throw new Error("Failed to save data");

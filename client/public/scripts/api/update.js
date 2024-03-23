@@ -1,20 +1,15 @@
 import { fetchItems } from "./get-item";
-// 부모 요소인 .item__list에 클릭 이벤트를 추가합니다.
 document
   .querySelector(".item__list")
   .addEventListener("click", async (event) => {
-    // 클릭된 요소가 li 요소인지 확인합니다.
     const li = event.target.closest("li");
     if (li) {
       const itemId = li.dataset.itemId;
       try {
-        // 해당 아이템의 정보를 가져오기 위해 서버에 GET 요청을 보냅니다.
         const response = await fetch(`/cute/${itemId}`);
 
         if (response.ok) {
-          // 서버에서 받은 데이터를 JSON으로 파싱합니다.
           const data = await response.json();
-          // 받은 데이터를 사용하여 다이얼로그를 엽니다.
           openDialog(data, itemId);
         } else {
           throw new Error("Failed to fetch item information");
@@ -27,9 +22,7 @@ document
   });
 
 const dialog = document.querySelector(".modal--update");
-// 다이얼로그를 열기 위한 함수입니다.
 function openDialog(data, itemId) {
-  // 받아온 데이터를 이용하여 요소에 채웁니다.
   dialog.dataset.itemId = itemId;
   const imgInput = dialog.querySelector(".preview");
   const nameInput = dialog.querySelector('input[name="name"]');
@@ -39,12 +32,11 @@ function openDialog(data, itemId) {
   );
   const cutePointTextarea = dialog.querySelector('textarea[name="cutePoint"]');
 
-  // 데이터를 요소에 채웁니다.
   imgInput.src = data.picture;
 
   nameInput.value = data.name;
 
-  categorySelect.setAttribute("data-value", data.category); // 예시 데이터에 따라서 category가 어디에 있는지 정확히 지정해주세요.
+  categorySelect.setAttribute("data-value", data.category);
   cateButtonText.textContent = data.category;
   cateButtonText.style.color = "#fff";
 
@@ -106,7 +98,7 @@ function resetImage() {
 const fileInput = document.getElementById("file-update");
 
 fileInput.addEventListener("click", function (event) {
-  event.stopPropagation(); // 이벤트 버블링을 중단하여 모달이 닫히는 것을 방지합니다.
+  event.stopPropagation();
 });
 
 const uploadNameInput = document.querySelector(".modal--update .upload");
@@ -114,9 +106,8 @@ const imagePreview = document.querySelector(".modal--update .preview");
 
 fileInput.addEventListener("change", function () {
   console.log("click");
-  const fileName = fileInput.value.split("\\").pop(); // 파일 경로에서 파일 이름만 추출
+  const fileName = fileInput.value.split("\\").pop();
   uploadNameInput.value = fileName;
-  // 미리보기
   const file = this.files[0];
 
   if (file) {
@@ -135,15 +126,12 @@ fileInput.addEventListener("change", function () {
 const updateForm = document.getElementById("update-form");
 
 updateForm.addEventListener("submit", async (event) => {
-  event.preventDefault(); // 기본 동작(페이지 새로고침) 방지
-  const scrollPosition = window.scrollY; // 폼 제출 전의 스크롤 위치 저장
+  event.preventDefault();
+  const scrollPosition = window.scrollY;
   try {
-    const formData = new FormData(updateForm); // 폼 데이터 생성
+    const formData = new FormData(updateForm);
 
-    // 클라이언트에서 받은 아이템의 ID
     const itemId = dialog.dataset.itemId.toString();
-    // 서버에 PUT 요청을 보냅니다.
-    // select 값
     const category = document
       .querySelector("#update-form .select-dropdown__button")
       .getAttribute("data-value");
@@ -158,9 +146,7 @@ updateForm.addEventListener("submit", async (event) => {
     });
 
     if (response.ok) {
-      // 수정이 성공했을 경우
       console.log("Item updated successfully");
-      // 여기에 추가적으로 할 일을 작성합니다.
       window.scrollTo(0, scrollPosition);
       dialog.close();
       fetchItems();

@@ -3,7 +3,6 @@ const category = document.querySelector(".category");
 
 category.addEventListener("click", function (e) {
   const target = e.target.closest(".category__list");
-  // if (!target) return; // 클릭된 요소가 category__list가 아닌 경우 종료
   const isCategoryClosed = category.classList.contains("closed");
   const isActive = target.classList.contains("active");
   if ((isCategoryClosed && isActive) || (!isCategoryClosed && isActive)) {
