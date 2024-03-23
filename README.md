@@ -6,15 +6,15 @@
 
 ### 기간
 
-📆 24.02.19 ~ 24.02.24
+📆 24.03.11 ~ 24.03.22
 
 ---
 
 ### 페이지 소개
 
-#### 1. Work 페이지
+#### 1. Header
 
-![work1](./public/images/readme/work1.png)
+![work1](/client/public/images/readme/header.png)
 
 ##### 헤더 부분
 
