@@ -47,6 +47,7 @@ function makeList(items) {
 
     li.addEventListener("mouseenter", () => {
       const selectedItem = document.querySelector(".item");
+      console.log("경로" + item.picture);
       selectedItem.querySelector(".item-head__img").src = item.picture;
       selectedItem.querySelector(".item-head__name").textContent = item.name;
       selectedItem.querySelector(".item-head__cate").textContent =
