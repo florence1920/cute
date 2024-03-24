@@ -88,7 +88,8 @@ router.post("/", upload.single("picture"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
     const { name, cutePoint, category, rate } = req.body;
-    const newPicturePath = req.file.path.replace(/uploads\\/, "");
+    let newPicturePath = req.file.path.replace(/^.*[\/\\]/, "");
+    // const newPicturePath = req.file.path.replace(/uploads\\/, "");
     console.log("수정전 경로" + req.file.path);
     console.log("경로" + newPicturePath);
     // MongoDB에 저장할 데이터 생성
