@@ -59,6 +59,12 @@ Vite, Express.js, MongoDB, AWS 를 사용해 프로젝트를 구성했습니다.
 
 ---
 
+#### UserFlow
+
+![Category](/client/public/images/readme/userflow.png)
+
+---
+
 ### 총평
 
 - 프로젝트 환경 구성에 시간을 너무 많이 사용했습니다.
